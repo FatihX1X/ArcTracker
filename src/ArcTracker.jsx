@@ -237,7 +237,7 @@ async function fetchAll(address, onPhase) {
   }
 
   // 2) Transactions
-  onPhase("Fetching transactions…”);
+  onPhase("Fetching transactions…");
   let gotV2 = false;
   try {
     txs = await v2Pages(`/addresses/${address}/transactions`);
@@ -247,7 +247,7 @@ async function fetchAll(address, onPhase) {
   } catch(e) { log.push(`✗ v2 txs: ${e.message}`); }
 
   if (!gotV2) {
-    onPhase("Fetching transactions (legacy)…”);
+    onPhase("Fetching transactions (legacy)…");
     try {
       const raw = await legacyGet({
         module:"account",action:"txlist",address,
@@ -260,7 +260,7 @@ async function fetchAll(address, onPhase) {
   }
 
   // 3) Token transfers
-  onPhase("Fetching token transfers…”);
+  onPhase("Fetching token transfers…");
   try {
     tokenTxs = await v2Pages(`/addresses/${address}/token-transfers`);
     log.push(`✓ v2 token txs: ${tokenTxs.length}`);
@@ -407,7 +407,7 @@ function CTip({active,payload,label}) {
   return (
     <div className="tip">
       <p style={{color:"rgba(255,255,255,.36)",fontSize:10,marginBottom:5}}>{label}</p>
-      {payload.map((p,i)=>( 
+      {payload.map((p,i)=>(
         <p key={i} style={{color:p.color||C.neon,fontSize:12,fontWeight:600}}>
           {p.name}: <span style={{color:"#fff"}}>{typeof p.value==="number"?p.value.toLocaleString(undefined,{maximumFractionDigits:6}):p.value}</span>
         </p>
@@ -416,7 +416,7 @@ function CTip({active,payload,label}) {
   );
 }
 
-const NoData=({msg="No data"})=>( 
+const NoData=({msg="No data"})=>(
   <p style={{textAlign:"center",padding:"34px 0",color:"rgba(255,255,255,.2)",fontSize:13}}>{msg}</p>
 );
 
@@ -462,13 +462,4 @@ function TxPie({data}) {
       <PieChart>
         <Pie data={data} cx="50%" cy="50%" innerRadius={50} outerRadius={80}
           paddingAngle={3} dataKey="value" nameKey="name" stroke="none">
-          {data.map((_,i)=><Cell key={i} fill={PIE_COLS[i % PIE_COLS.length]} />)}
-        </Pie>
-        <Tooltip content={<CTip/>}/>
-        <Legend verticalAlign="bottom" height={36} iconType="circle" iconSize={9}/>
-      </PieChart>
-    </ResponsiveContainer>
-  );
-}
-
-// The file was truncated in the user message. The rest of the component needs to be sent in the next message(s). For now, pushing what we have.
+          {data.map((_,i)=><Cell key={i} fil
